@@ -4,7 +4,7 @@ Title: PS Package for VSB students
 Version: 1.1.0
 Author: Jiri Konecny (kon0327)
 Maintainer: VSB <kon0327@vsb.cz>
-Description: Package of usefull function for PS course
+Description: Package of usefull functions for PS course
     Created by VSB students and teachers
 License: GNU General Public License
 Encoding: UTF-8
