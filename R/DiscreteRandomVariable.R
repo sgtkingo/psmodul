@@ -106,10 +106,8 @@ get_standard_deviation <- function(DX){
 }
 
 
-probabilityEnum <- function() {
-  list(LOWER = "LOWER", HIGHER = "HIGHER", BETWEEN = "BETWEEN", EQUAL="EQUAL")
-}
-probability <- probabilityEnum()
+probability <- list(LOWER = "LOWER", HIGHER = "HIGHER", BETWEEN = "BETWEEN", EQUAL="EQUAL")
+
 
 #Vypocet pravdepodobnosti
 #' @param x = hodnoty x
@@ -118,7 +116,11 @@ probability <- probabilityEnum()
 #' @param a = mezni hodnota (pripadnì dolni mez)
 #' @param b = horni mez (pro probablityType$BETWEEN)
 #' @return Vraci pravdepodobnostni hodnotu
-get_probability <- function(x, Fx, probablityType, a, b = 0){
+get_probability <- function(x, Fx, probabilityType, a, b = 0){
+  if (length(probabilityType) == 0){
+    stop("Unknown logic operand!")
+    return (-1)
+  }
   F <- function(a){
     i <- 1
     while (x[[i]] < a) {
@@ -126,7 +128,7 @@ get_probability <- function(x, Fx, probablityType, a, b = 0){
     }
     return(list(value = Fx[[i]], index=i))
   }
-  switch (probablityType,
+  switch (probabilityType,
           "LOWER" = {return(F(a)$value)},         # P(X < a)
           "HIGHER" = {return(1-F(a)$value)},      # P(X >= a)
           "BETWEEN" = {                           # P(a <= X < b)
