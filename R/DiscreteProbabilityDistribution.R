@@ -1,3 +1,5 @@
+#Seznam logickych operandu
+logicOperands <- c("=","<=","<",">",">=")
 #' Funkce pro vypocet hodnoty Hypergeometric Distribution
 #'
 #' @param x = hodnota NV
@@ -15,7 +17,6 @@ hypergeo_disc <- function(x, N, M, n, logic = "<="){
   reverse_logic = TRUE
   type = 'p'
 
-  logicOperands <- c("=","<=","<",">",">=")
   if (!(logic %in% logicOperands)){
     cat(sprintf("\t (!)ERROR: Unknown logic operand! (%s) \n", logic))
     return (0.0)
@@ -51,7 +52,6 @@ binom_disc <- function(x, n, PI, logic = "<="){
   reverse_logic = TRUE
   type = 'p'
 
-  logicOperands <- c("=","<=","<",">",">=")
   if (!(logic %in% logicOperands)){
     cat(sprintf("\t (!)ERROR: Unknown logic operand! (%s) \n", logic))
     return (0.0)
@@ -88,7 +88,6 @@ nbinom_disc <- function(x, k, PI, logic = "<="){
   #uprava pro R definici
   x = x - k
 
-  logicOperands <- c("=","<=","<",">",">=")
   if (!(logic %in% logicOperands)){
     cat(sprintf("\t (!)ERROR: Unknown logic operand! (%s) \n", logic))
     return (0.0)
@@ -124,7 +123,6 @@ pois_disc <- function(x, t, LAMBDA, logic = "<="){
   reverse_logic = TRUE
   type = 'p'
 
-  logicOperands <- c("=","<=","<",">",">=")
   if (!(logic %in% logicOperands)){
     cat(sprintf("\t (!)ERROR: Unknown logic operand! (%s) \n", logic))
     return (0.0)
