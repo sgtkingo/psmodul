@@ -1,6 +1,10 @@
 
 
 #Prevedeni pravdepodobnostni funkce na distribucni
+#' @param x = hodnoty x
+#' @param p = pravdepodobnostni funkce
+#' @param calculate = priznak pro rozhodnuti o vypoctu EX, DX, sigma
+#' @return Vraci \code{Fx}: popis distribucni funkce
 prob_to_dist <- function (x, p, calculate = FALSE){
   sum = 0
   row <- sprintf("%f        x <  %d",sum, x[[1]])[1]
@@ -30,6 +34,10 @@ prob_to_dist <- function (x, p, calculate = FALSE){
 }
 
 #Prevedeni distribucni funkce na pravdepodobnostni
+#' @param x = horni limity pro distribucni funkci
+#' @param Fx = distribucni funkce
+#' @param calculate =  priznak pro rozhodnuti o vypoctu EX, DX, sigma
+#' @return Vraci \code{p}: popis pravdepodobnostni funkce
 dist_to_prob <- function (x, Fx, calculate = FALSE){
   xAxis = c()
   yAxis = c()
@@ -58,6 +66,8 @@ dist_to_prob <- function (x, Fx, calculate = FALSE){
 }
 
 #Vypocet stredni hodnoty, rozptylu a smerodatne odchylky
+#' @param x = hodnoty x
+#' @param p = pravdepodobnostni funkce
 calculate_metric <- function(x, p){
   EX = get_mean(x,p)
   DX = get_variance(x,p,EX)
@@ -68,12 +78,19 @@ calculate_metric <- function(x, p){
 }
 
 #Vypocet stredni hodnoty
+#' @param x = hodnoty x
+#' @param p = pravdepodobnostni funkce
+#' @return Vraci \code{EX}: støední hodnota
 get_mean <- function (x, p){
   EX = sum(x*p)
   return(EX)
 }
 
 #Vypocet rozptylu
+#' @param x = hodnoty x
+#' @param p = pravdepodobnostni funkce
+#' @param EX = stredni hodnoty
+#' @return Vraci \code{DX}: rozptyl
 get_variance <- function(x, p, EX){
   EX2 = sum(x*x*p)
   DX = EX2 - EX^2
@@ -81,9 +98,11 @@ get_variance <- function(x, p, EX){
 }
 
 #Vypocet smerodatne odchylky
+#' @param DX = rozptyl
+#' @return Vraci \code{sigmaX}: sigma
 get_standard_deviation <- function(DX){
   sigma.X = sqrt(DX)
-  sigma.X
+  return(sigma.X)
 }
 
 
@@ -93,6 +112,12 @@ probabilityEnum <- function() {
 probability <- probabilityEnum()
 
 #Vypocet pravdepodobnosti
+#' @param x = hodnoty x
+#' @param Fx = distribucni funkce
+#' @param probabilityType = hodnoty x
+#' @param a = mezni hodnota (pripadnì dolni mez)
+#' @param b = horni mez (pro probablityType$BETWEEN)
+#' @return Vraci pravdepodobnostni hodnotu
 get_probability <- function(x, Fx, probablityType, a, b = 0){
   F <- function(a){
     i <- 1
@@ -115,6 +140,10 @@ get_probability <- function(x, Fx, probablityType, a, b = 0){
 }
 
 #Prevedeni dle nahodne veliciny Y
+#' @param x = hodnoty x
+#' @param p = pravdepodobnostni funkce
+#' @param y = tvar nahodne veliciny Y
+#' @return Vraci \code{p}: prevedena pravdepodobnostni funkce
 transform_probability <- function(x, p, y){
   for(i in 1:length(x)){
     x[[i]] = eval(y,envir = list(x=x[[i]]))
