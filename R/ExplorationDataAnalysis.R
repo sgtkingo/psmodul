@@ -28,6 +28,8 @@ ReadExcel <-function(file="", sheet="", colNames=NULL){
 
 #//////////////////////////////////////////////////////////////////////////////////////
 
+#EDA funkce
+
 #Overeni normalniho rozdeleni datasetu
 #Vrací TRUE - je normalniho rozdeli, FALSE = není N
 IsNorm <- function(skewness, kurtosis){
