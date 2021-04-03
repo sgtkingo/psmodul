@@ -2,9 +2,9 @@
 #EDA - Exploration Data Analysis
 #//////////////////////////////////////////////////////////////////////////////////////
 
-#Práce se soubory
+#Prace se soubory
 
-# Nastavení pracovního adresare na slozku source file, pripadne jeji podskozku subdir
+# Nastaveni pracovniho adresare na slozku source file, pripadne jeji podskozku subdir
 SetWorkingDirectoryToSource <-function(subdir=""){
   # Nastaveni pracovniho adresare na složku source file
   WD <- dirname(rstudioapi::getSourceEditorContext()$path);
@@ -18,7 +18,7 @@ SetWorkingDirectoryToSource <-function(subdir=""){
 #Vraci nacteny Excel sheet jako DataFrame
 ReadExcel <-function(file="", sheet="", colNames=NULL){
   #Nacteni dat ve standartnim predpripravenem formatu, col_names defaultne nacteny z excelu
-  data = read_excel("data_std_raw.xlsx", sheet = "S1")
+  data = read_excel(file, sheet = sheet)
   #Prejmenuji sloupce na pouzitelne nazvy
   if( !is.null(colNames) )colnames(data) = colNames;
   #Konvertuji datovy typ na dataframe
