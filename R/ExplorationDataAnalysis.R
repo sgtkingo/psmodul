@@ -99,10 +99,10 @@ GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y",
   # Použití vnitøních hradeb - obecnìjší postup - uvedeno bez ohledu na výrobce!!!
   IQR = IQR(data)
 
-  DM = quantile(data, 0.25, na.rm=T) - 1.5*IQR  # výpoèet dolní mezi vnitøních hradeb
-  HM = quantile(data, 0.75, na.rm=T) + 1.5*IQR  # výpoèet horní mezi vnitøních hradeb
+  LB = quantile(data, 0.25, na.rm=T) - 1.5*IQR  # výpoèet dolní mezi vnitøních hradeb
+  HB = quantile(data, 0.75, na.rm=T) + 1.5*IQR  # výpoèet horní mezi vnitøních hradeb
 
-  result <- matrix(c(outer,IQR,DM,HM),ncol=4,byrow=TRUE);
+  result <- matrix(c(outer,IQR,LB,HB),ncol=4,byrow=TRUE);
   colnames(result) <- c("Outer","IQR","LB","HB");
   result <- as.data.frame(result);
 
