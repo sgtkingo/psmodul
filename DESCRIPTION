@@ -1,7 +1,7 @@
 Package: psmodul
 Type: Package
 Title: PS Package for VSB students
-Version: 1.1.0
+Version: 1.2.2
 Author: Jiri Konecny (kon0327)
 Maintainer: VSB <kon0327@vsb.cz>
 Description: Package of usefull functions for PS course
@@ -11,4 +11,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     stats,
+    moments,
+    dplyr,
+    readxl,
+    rstudioapi
 
