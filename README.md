@@ -49,3 +49,19 @@ CRV.get_standard_deviation <- function(DX)
 CRV.get_probability <- function(fx, min, max, probabilityType, a, b = 0)
 CRV.transform <- function(fx, min, max, y)
 ```
+
+## ExplorationDataAnalysis.R - Explorační datová analýza
+
+> Obsahuje funkce pro explorační datovou analýzu: **_práci se soubory, ověřenéní N datasetu, statistické charakteristiky, boxploty a odlehlá pozorování+hranice_**.
+
+- Seznam funkcí­:
+
+```
+SetWorkingDirectoryToSource <-function(subdir="")
+ReadExcel <-function(file="", sheet="", colNames=NULL)
+IsNorm <- function(skewness, kurtosis)
+GetStats <- function(data, colName)
+GetStatsWithGroupBy <- function(data, colName, groupColName)
+GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0)
+GetBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue")
+```
