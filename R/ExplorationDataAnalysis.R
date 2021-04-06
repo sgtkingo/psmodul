@@ -5,6 +5,7 @@
 #Prace se soubory
 
 # Nastaveni pracovniho adresare na slozku source file, pripadne jeji podskozku subdir
+#' @author Konecny Jiri (kon0327)
 SetWorkingDirectoryToSource <-function(subdir=""){
   # Nastaveni pracovniho adresare na složku source file
   WD <- dirname(rstudioapi::getSourceEditorContext()$path);
@@ -16,6 +17,7 @@ SetWorkingDirectoryToSource <-function(subdir=""){
 }
 
 #Vraci nacteny Excel sheet jako DataFrame
+#' @author Konecny Jiri (kon0327)
 ReadExcel <-function(file="", sheet="", colNames=NULL){
   #Nacteni dat ve standartnim predpripravenem formatu, col_names defaultne nacteny z excelu
   data = read_excel(file, sheet = sheet)
@@ -33,6 +35,7 @@ ReadExcel <-function(file="", sheet="", colNames=NULL){
 
 #Overeni normalniho rozdeleni datasetu
 #Vrací TRUE - je N rozdeli, FALSE = není N
+#' @author Konecny Jiri (kon0327)
 IsNorm <- function(skewness, kurtosis){
   result = (skewness > -2.0 && skewness < 2.0);
   result = result & (kurtosis > -2.0 && kurtosis < 2.0);
@@ -41,6 +44,7 @@ IsNorm <- function(skewness, kurtosis){
 }
 
 #Vsechny statisticke charkteristiky datasetu - data, pro vybraný sloupec - colName (pouziti dplyr)
+#' @author Konecny Jiri (kon0327)
 GetStats <- function(data, colName){
   stats <-  summarise(.data = data,
                       dataLenght = length(.data[[colName]]),
@@ -62,6 +66,7 @@ GetStats <- function(data, colName){
 }
 
 #Vsechny statisticke charkteristiky datasetu - data, pro vybraný sloupec - colName, zhlukovaná pomocí groupBy - groupColName (pouziti dplyr)
+#' @author Konecny Jiri (kon0327)
 GetStatsWithGroupBy <- function(data, colName, groupColName){
   stats <-
     group_by(.data = data, .data[[groupColName]]) %>%
@@ -83,10 +88,10 @@ GetStatsWithGroupBy <- function(data, colName, groupColName){
   return(stats);
 }
 
-
 #Vraci vnitrni hradby DM, HM, a Odlehla pozorovani + BoxPlot
-#yýsledek vraci jako DataFrame, kde Outer jsou Odlehla pozorovani, IQR je IQR, LB je dolni mez, HB je horni mez
-GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=3.0){
+#Výsledek vraci jako DataFrame, kde Outer jsou Odlehla pozorovani, IQR je IQR, LB je dolni mez, HB je horni mez
+#' @author Konecny Jiri (kon0327)
+GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0){
   #Omezeni
   sigma = sd(data,na.rm=T);
   limMin = min(data) - size*sigma; #min
@@ -108,10 +113,47 @@ GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y",
   LB = quantile(data, 0.25, na.rm=T) - 1.5*IQR  # vypocet dolni mezi vnitrnich hradeb
   HB = quantile(data, 0.75, na.rm=T) + 1.5*IQR  # vypocet horni mezi vnitrnich hradeb
 
-  result <- matrix(c(outer,IQR,LB,HB),ncol=4,byrow=TRUE);
-  colnames(result) <- c("Outer","IQR","LB","HB");
+  result <- matrix(c(IQR,LB,HB),ncol=3,byrow=TRUE);
+  colnames(result) <- c("IQR","LB","HB");
   result <- as.data.frame(result);
 
+  cat("Outers values: ", outer,"\n")
+  print(result)
+  return(result);
+}
+
+#Vraci vnitrni hradby DM, HM, a Odlehla pozorovani + BoxPlot pro multibox plot
+#Vysledek vraci jako DataFrame, kde Outer jsou Odlehla pozorovani, LB je dolni mez, HB je horni mez, LQ - dolni Q, HQ- horni Q, MED = median
+#Pro kazdy boxplot zvlast dle parameru group!
+#' @author Konecny Jiri (kon0327)
+GetBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue"){
+  #Odlehle hodnoty a boxplot
+  boxplt = boxplot(data ~ group,
+                   main = title,
+                   ylab = y_name,
+                   xlab = x_name,
+                   col = color
+  );
+  #Odlehla pozorovani
+  for (i in 1:length(boxplt$group)) {
+    cat(boxplt$names[i],"\n\tOuter value: ", boxplt$out[i], "\tGroup: ", boxplt$group[i], "\n");
+  }
+
+  #Hradby
+  stats = boxplt$stats;
+  index = 1;
+
+  result <- matrix(ncol=6, byrow=TRUE);
+  colnames(result) = c("Group","LB","LQ","MED","HQ","HB");
+  for (name in boxplt$names) {
+    data <- c(name, stats[,index]);
+    result <- rbind(result, data)
+    index = index + 1;
+  }
+  result <- as.data.frame(result);
+  result = na.omit(result) # vynecháme øádky s NA hodnotami
+
+  print(result);
   return(result);
 }
 

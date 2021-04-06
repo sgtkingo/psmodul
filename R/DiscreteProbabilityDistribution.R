@@ -1,6 +1,7 @@
 #Seznam logickych operandu
 logicOperands <- c("=","<=","<",">",">=")
 #' Funkce pro vypocet hodnoty Hypergeometric Distribution
+#' @author Konecny Jiri (kon0327)
 #'
 #' @param x = hodnota NV
 #' @param N = pocet vsech prvku
@@ -37,6 +38,7 @@ hypergeo_disc <- function(x, N, M, n, logic = "<="){
 }
 
 #' Funkce pro vypocet hodnoty Binomial Distribution
+#' @author Konecny Jiri (kon0327)
 #'
 #' @param x = hodnota NV
 #' @param n = pocet pokusu
@@ -72,6 +74,7 @@ binom_disc <- function(x, n, PI, logic = "<="){
 }
 
 #' Funkce pro vypocet hodnoty Negative Binomial Distribution
+#' @author Konecny Jiri (kon0327)
 #'
 #' @param x = hodnota NV
 #' @param k = pocet pokusu k dosazeni uspechu
@@ -110,6 +113,7 @@ nbinom_disc <- function(x, k, PI, logic = "<="){
 
 
 #' Funkce pro vypocet hodnoty Poisson Distribution
+#' @author Konecny Jiri (kon0327)
 #'
 #' @param x = hodnota NV
 #' @param t = pocet casovych useku
