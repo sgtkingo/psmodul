@@ -10,10 +10,10 @@ _Package of usefull functions for PS - Probability & Statistics course from stud
 - Seznam funkcí:
 
 ```
-hypergeo_disc <- function(x, N, M, n, logic = "<=")
-binom_disc <- function(x, n, PI, logic = "<=")
-nbinom_disc <- function(x, k, PI, logic = "<=")
-pois_disc <- function(x, t, LAMBDA, logic = "<=")
+DPD.hypergeo_disc <- function(x, N, M, n, logic = "<=")
+DPD.binom_disc <- function(x, n, PI, logic = "<=")
+DPD.nbinom_disc <- function(x, k, PI, logic = "<=")
+DPD.pois_disc <- function(x, t, LAMBDA, logic = "<=")
 ```
 
 ## DiscreteRandomVariable.R - Diskrétní náhodná veličina
@@ -57,11 +57,11 @@ CRV.transform <- function(fx, min, max, y)
 - Seznam funkcí­:
 
 ```
-SetWorkingDirectoryToSource <-function(subdir="")
-ReadExcel <-function(file="", sheet="", colNames=NULL)
-IsNorm <- function(skewness, kurtosis)
-GetStats <- function(data, colName)
-GetStatsWithGroupBy <- function(data, colName, groupColName)
-GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0)
-GetBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue")
+EDA.setWorkingDirectoryToSource <-function(subdir="")
+EDA.readExcel <-function(file="", sheet="", colNames=NULL)
+EDA.isNorm <- function(skewness, kurtosis)
+EDA.getStats <- function(data, colName)
+EDA.getStatsWithGroupBy <- function(data, colName, groupColName)
+EDA.getBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0)
+EDA.getBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue")
 ```
