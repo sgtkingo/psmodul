@@ -13,7 +13,7 @@ logicOperands <- c("=","<=","<",">",">=")
 #' hypergeo_disc(4,20,12,4,"=") - 20 piv(svetle, tmave), 12 svetlych, vybirame 4, chceme 4 svetle
 #' hypergeo_disc(3,100,30,20) - 100 prvku(bile, cerne), 30 bilych, vybirame 20, chceme MAX 3 bile
 #' hypergeo_disc(5,100,30,20,">=") - 100 prvku(bile, cerne), 30 bilych, vybirame 20, chceme alespon 5 bilych
-hypergeo_disc <- function(x, N, M, n, logic = "<="){
+DPD.hypergeo_disc <- function(x, N, M, n, logic = "<="){
   result = 0.0
   reverse_logic = TRUE
   type = 'p'
@@ -49,7 +49,7 @@ hypergeo_disc <- function(x, N, M, n, logic = "<="){
 #' binom_disc(4,10,1/6) - Hazime 10x kostkou, sance ze padnou nejvysse 4 sestky, sance na 1 sestku: 1/6
 #' binom_disc(3,10,1/6,"=") - Hazime 10x kostkou, sance ze padnou presne 3 sestky, sance na 1 sestku: 1/6
 #' binom_disc(5,10,1/6, ">") - Hazime 10x kostkou, sance ze padne 5 sestkek a vice, sance na 1 sestku: 1/6
-binom_disc <- function(x, n, PI, logic = "<="){
+DPD.binom_disc <- function(x, n, PI, logic = "<="){
   result = 0.0
   reverse_logic = TRUE
   type = 'p'
@@ -83,7 +83,7 @@ binom_disc <- function(x, n, PI, logic = "<="){
 #' @return Vraci \code{result}:double jako hodnotu pravdepodobnosti
 #' @examples
 #' nbinom_disc(x=120, k=100, PI=0.9, ">=") - Pravdepodobnost ze vyroste 120 seminek, kdyz vime ze 100 jich vyroste s 90% uspesnosti
-nbinom_disc <- function(x, k, PI, logic = "<="){
+DPD.nbinom_disc <- function(x, k, PI, logic = "<="){
   result = 0.0
   reverse_logic = TRUE
   type = 'p'
@@ -122,7 +122,7 @@ nbinom_disc <- function(x, k, PI, logic = "<="){
 #' @return Vraci \code{result}:double jako hodnotu pravdepodobnosti
 #' @examples
 #' pois_disc(x=1, t=2, LAMBDA=2, "<=")
-pois_disc <- function(x, t, LAMBDA, logic = "<="){
+DPD.pois_disc <- function(x, t, LAMBDA, logic = "<="){
   result = 0.0
   reverse_logic = TRUE
   type = 'p'

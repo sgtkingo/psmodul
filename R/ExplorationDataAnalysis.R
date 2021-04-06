@@ -6,7 +6,7 @@
 
 # Nastaveni pracovniho adresare na slozku source file, pripadne jeji podskozku subdir
 #' @author Konecny Jiri (kon0327)
-SetWorkingDirectoryToSource <-function(subdir=""){
+EDA.setWorkingDirectoryToSource <-function(subdir=""){
   # Nastaveni pracovniho adresare na složku source file
   WD <- dirname(rstudioapi::getSourceEditorContext()$path);
   # Podslozka
@@ -18,7 +18,7 @@ SetWorkingDirectoryToSource <-function(subdir=""){
 
 #Vraci nacteny Excel sheet jako DataFrame
 #' @author Konecny Jiri (kon0327)
-ReadExcel <-function(file="", sheet="", colNames=NULL){
+EDA.readExcel <-function(file="", sheet="", colNames=NULL){
   #Nacteni dat ve standartnim predpripravenem formatu, col_names defaultne nacteny z excelu
   data = read_excel(file, sheet = sheet)
   #Prejmenuji sloupce na pouzitelne nazvy
@@ -36,7 +36,7 @@ ReadExcel <-function(file="", sheet="", colNames=NULL){
 #Overeni normalniho rozdeleni datasetu
 #Vrací TRUE - je N rozdeli, FALSE = není N
 #' @author Konecny Jiri (kon0327)
-IsNorm <- function(skewness, kurtosis){
+EDA.isNorm <- function(skewness, kurtosis){
   result = (skewness > -2.0 && skewness < 2.0);
   result = result & (kurtosis > -2.0 && kurtosis < 2.0);
 
@@ -45,7 +45,7 @@ IsNorm <- function(skewness, kurtosis){
 
 #Vsechny statisticke charkteristiky datasetu - data, pro vybraný sloupec - colName (pouziti dplyr)
 #' @author Konecny Jiri (kon0327)
-GetStats <- function(data, colName){
+EDA.getStats <- function(data, colName){
   stats <-  summarise(.data = data,
                       dataLenght = length(.data[[colName]]),
                       minimum = min(.data[[colName]], na.rm=T),     # preventivni na.rm=T
@@ -67,7 +67,7 @@ GetStats <- function(data, colName){
 
 #Vsechny statisticke charkteristiky datasetu - data, pro vybraný sloupec - colName, zhlukovaná pomocí groupBy - groupColName (pouziti dplyr)
 #' @author Konecny Jiri (kon0327)
-GetStatsWithGroupBy <- function(data, colName, groupColName){
+EDA.getStatsWithGroupBy <- function(data, colName, groupColName){
   stats <-
     group_by(.data = data, .data[[groupColName]]) %>%
     summarise(        dataLenght = length(.data[[colName]]),
@@ -91,7 +91,7 @@ GetStatsWithGroupBy <- function(data, colName, groupColName){
 #Vraci vnitrni hradby DM, HM, a Odlehla pozorovani + BoxPlot
 #Výsledek vraci jako DataFrame, kde Outer jsou Odlehla pozorovani, IQR je IQR, LB je dolni mez, HB je horni mez
 #' @author Konecny Jiri (kon0327)
-GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0){
+EDA.getBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0){
   #Omezeni
   sigma = sd(data,na.rm=T);
   limMin = min(data) - size*sigma; #min
@@ -126,7 +126,7 @@ GetBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y",
 #Vysledek vraci jako DataFrame, kde Outer jsou Odlehla pozorovani, LB je dolni mez, HB je horni mez, LQ - dolni Q, HQ- horni Q, MED = median
 #Pro kazdy boxplot zvlast dle parameru group!
 #' @author Konecny Jiri (kon0327)
-GetBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue"){
+EDA.getBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue"){
   #Odlehle hodnoty a boxplot
   boxplt = boxplot(data ~ group,
                    main = title,
