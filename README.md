@@ -3,6 +3,16 @@
 _Package of usefull functions for PS - Probability & Statistics course from students and teachers on VSB-TU Ostrava.
 || Balíček užitečných funkcí od studentů a učitelů VŠB-TU pro předmět PS - Pravděpodonost & Statistika._
 
+## PackageSettings.R - Nastavení package
+
+> Obsahuje funkce pro konfiguraci package.
+
+- Seznam funkcí:
+
+```
+PSM.activateAllLibs <-function()
+```
+
 ## DiscreteProbabilityDistribution.R - Rozdělení diskrétní pravděpodobnosti
 
 > Obsahuje funkce pro výpočet pravděpodobnosti v oblasti Rozdělení diskrétní pravděpodobnosti jako jsou: **_Hypergeometric Distribution, Binomial Distribution, Negative Binomial Distribution a Poisson Distribution_**.
