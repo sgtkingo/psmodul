@@ -59,7 +59,7 @@ EDA.getStats <- function(data, colName){
                       var_coef_perct = (100*(sigma/mean)),  # variacni koeficient v procentech
                       skewness = (moments::skewness(.data[[colName]], na.rm=T)),       # preventivni specifikace balícku moments
                       kurtosis = (moments::kurtosis(.data[[colName]], na.rm=T)-3),
-                      norm = ifelse(IsNorm(skewness, kurtosis), "N", "not-N") #urci zda ma normalni rozdeleni
+                      norm = ifelse(EDA.isNorm(skewness, kurtosis), "N", "not-N") #urci zda ma normalni rozdeleni
   )
 
   return(stats);
@@ -82,7 +82,7 @@ EDA.getStatsWithGroupBy <- function(data, colName, groupColName){
                       var_coef_perct = (100*(sigma/mean)),  # variacni koeficient v procentech
                       skewness = (moments::skewness(.data[[colName]], na.rm=T)),       # preventivni specifikace balicku moments
                       kurtosis = (moments::kurtosis(.data[[colName]], na.rm=T)-3),
-                      norm = ifelse(IsNorm(skewness, kurtosis), "N", "not-N") #urci zda ma normalni rozdeleni
+                      norm = ifelse(EDA.isNorm(skewness, kurtosis), "N", "not-N") #urci zda ma normalni rozdeleni
               )
 
   return(stats);
