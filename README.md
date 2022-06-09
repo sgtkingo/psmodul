@@ -20,10 +20,10 @@ PSM.activateAllLibs <-function()
 - Seznam funkcí:
 
 ```
-DPD.hypergeo_disc <- function(x, N, M, n, logic = "<=")
-DPD.binom_disc <- function(x, n, PI, logic = "<=")
-DPD.nbinom_disc <- function(x, k, PI, logic = "<=")
-DPD.pois_disc <- function(x, t, LAMBDA, logic = "<=")
+DPD.hypergeo_disc <- function(x, N, M, n, logic = "<=", draw_plot = FALSE)
+DPD.binom_disc <- function(x, n, PI, logic = "<=", draw_plot = FALSE)
+DPD.nbinom_disc <- function(x, k, PI, logic = "<=", draw_plot = FALSE)
+DPD.pois_disc <- function(x, t, LAMBDA, logic = "<=", draw_plot = FALSE)
 ```
 
 ## DiscreteRandomVariable.R - Diskrétní náhodná veličina
@@ -41,6 +41,17 @@ DRV.get_variance <- function(x, p, EX)
 DRV.get_standard_deviation <- function(DX)
 DRV.get_probability <- function(x, Fx, probabilityType, a, b = 0)
 DRV.transform_probability <- function(x, p, y)
+```
+## ContinuousProbabilityDistribution.R - Rozdělení spojité pravděpodobnosti
+
+> Obsahuje funkce pro výpočet pravděpodobnosti v oblasti Rozdělení spojité pravděpodobnosti jako jsou: **_Exponencional Distribution, Weibull Distribution, Normaly Distribution_**.
+
+- Seznam funkcí:
+
+```
+CPD.exp_cont <- function(x, LAMBDA, logic = "<=", draw_plot = FALSE)
+CPD.weib_cont <- function(x, LAMBDA, BETA, logic = "<=", draw_plot = FALSE)
+CPD.norm_cont <- function(x, mu, sigma, logic = "<=", draw_plot = FALSE)
 ```
 
 ## ContinuousRandomVariable.R - Spojitá náhodná veličina
