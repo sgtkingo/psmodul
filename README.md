@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # psmodul
 
 _Package of usefull functions for PS - Probability & Statistics course from students and teachers on VSB-TU Ostrava.
@@ -87,6 +86,8 @@ EDA.getStatsWithGroupBy <- function(data, colName, groupColName)
 EDA.getBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0)
 EDA.getBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue")
 ```
+<<<<<<< HEAD
+=======
 =======
 # psmodul
 
@@ -165,4 +166,3 @@ EDA.getStatsWithGroupBy <- function(data, colName, groupColName)
 EDA.getBordersAndOutValues_AsBoxPlot <- function(data, title="No title", y_name="Y", x_name="", color="lightblue", size=1.0)
 EDA.getBordersAndOutValues_AsBoxPlot_ByGroup <- function(data, group, title="No title", y_name="Y", x_name="", color="lightblue")
 ```
->>>>>>> 455096d5afe40272fd0cfc89cf220d9db1b20297
