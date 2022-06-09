@@ -26,6 +26,15 @@ val1 = phyper(3,30,70,20, lower.tail = FALSE)
 val2 = DPD.hypergeo_disc(x=3, N=100, M=30, n=20,'>')
 testCase_isEqual(val1,val2)
 
+# vykreslíme si Distribuèní funkci
+x = seq(from = 0, to = 6, by = 1)
+F_x = phyper(x,30,70,20)
+plot(x, F_x, type = 'l')
+grid()
+
+DPD.hypergeo_disc(x, N=100, M=30, n=20,'<=', draw_plot = TRUE)
+
+
 #Test binom_disc
 
 #TEST 3
@@ -43,6 +52,14 @@ val1 = pbinom(q=149, size = 1000, prob=0.2, lower.tail = FALSE)
 val2 = DPD.binom_disc(x=150, n=1000, PI=0.2, ">=")
 testCase_isEqual(val1,val2)
 
+# vykreslíme si Distribuèní funkci
+x = seq(from = 0, to = 6, by = 1)
+F_x = pbinom(q=x, size = 10, prob=1/6)
+plot(x, F_x, type = 'l')
+grid()
+
+DPD.binom_disc(x, n=10, PI=1/6, draw_plot = TRUE)
+
 #Test nbinom_disc
 
 #TEST 6
@@ -59,4 +76,12 @@ testCase_isEqual(val1,val2)
 val1 = ppois(1, 4)
 val2 = DPD.pois_disc(x=1, t=2, LAMBDA=2, "<=")
 testCase_isEqual(val1,val2)
+
+# vykreslíme si Distribuèní funkci
+x = seq(from = 0, to = 6, by = 1)
+F_x = ppois(x, 4)
+plot(x, F_x, type = 'l')
+grid()
+
+DPD.pois_disc(x, t=2, LAMBDA=2, "<=", draw_plot = TRUE)
 
